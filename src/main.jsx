@@ -7,6 +7,10 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import App, {loader as appLoader} from './routes/App'
 import Login, {loader as loginLoader} from './routes/Login'
 import Room, {action as roomAction, loader as roomLoader} from './routes/Room'
+import ChannelRoom, {
+  action as channelAction,
+  loader as channelRoomLoader,
+} from './routes/ChannelRoom'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +20,12 @@ const router = createBrowserRouter([
         element: <Room />,
         loader: roomLoader,
         path: '/rooms/:id?/:name?/:url',
+      },
+      {
+        action: channelAction,
+        element: <ChannelRoom />,
+        loader: channelRoomLoader,
+        path: '/channels/:id?/:name?/:url',
       },
     ],
     element: <App />,
