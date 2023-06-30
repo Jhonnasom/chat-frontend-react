@@ -6,7 +6,7 @@ const MessageForm = forwardRef(function MessageForm(props, ref) {
 
   return (
     <Form
-      action={`/rooms2/${params.roomId}`}
+      action={`/rooms/${params.roomId}`}
       className="mt-4 rounded-md bg-gray-100 p-2"
       method="post"
       ref={ref}
