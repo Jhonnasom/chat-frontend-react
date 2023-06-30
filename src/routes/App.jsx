@@ -3,15 +3,18 @@ import {Outlet, redirect, useLoaderData} from 'react-router-dom'
 import ContactList from '../components/ContactList'
 import {AuthContext} from '../context/auth.context'
 import ky from '../utils/ky'
+import ChannelList from '../components/ChannelList'
 
 export async function loader() {
   try {
     const user = await ky.get('user').json()
     const users = await ky.get('users').json()
+    const channels = await ky.get('channels').json()
 
     return {
       user,
       users: users.filter((_user) => _user.id !== user.id),
+      channels: channels,
     }
   } catch (err) {
     if (err.response.status === 401) {
@@ -21,7 +24,7 @@ export async function loader() {
 }
 
 export default function App() {
-  const {user, users} = useLoaderData()
+  const {user, users, channels} = useLoaderData()
 
   function handleLogout() {
     localStorage.removeItem('token')
@@ -32,6 +35,7 @@ export default function App() {
     <AuthContext.Provider value={user}>
       <div className="flex h-screen">
         <div className="flex w-[320px] flex-col border border-gray-100">
+          <ChannelList channels={channels} />
           <ContactList users={users} />
           <button
             className="flex w-full items-center justify-center p-4"
