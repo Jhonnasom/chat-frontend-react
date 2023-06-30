@@ -42,7 +42,7 @@ export default function App() {
             onClick={handleLogout}
             type="button"
           >
-            Logout
+            Logout <b> &nbsp;{user.name}</b>
           </button>
         </div>
         <div className="flex flex-1 flex-col">
