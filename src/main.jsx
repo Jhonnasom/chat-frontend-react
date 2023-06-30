@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         action: roomAction,
         element: <Room />,
         loader: roomLoader,
-        path: '/rooms/:roomId',
+        path: '/rooms/:id?/:name?/:url',
       },
     ],
     element: <App />,

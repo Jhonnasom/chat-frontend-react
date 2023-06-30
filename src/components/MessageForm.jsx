@@ -6,7 +6,8 @@ const MessageForm = forwardRef(function MessageForm(props, ref) {
 
   return (
     <Form
-      action={`/rooms/${params.roomId}`}
+      //se agrega el parametro url para reutilizar el componente
+      action={`/${params.url}/${params.id}/${params.name}/${params.url}`}
       className="mt-4 rounded-md bg-gray-100 p-2"
       method="post"
       ref={ref}

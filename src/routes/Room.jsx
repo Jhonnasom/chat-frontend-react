@@ -13,7 +13,7 @@ export async function action({params, request}) {
     .post('messages', {
       json: {
         message: formData.get('message'),
-        room_id: params.roomId,
+        room_id: params.id,
       },
     })
     .json()
@@ -22,7 +22,7 @@ export async function action({params, request}) {
 }
 
 export async function loader({params}) {
-  const messages = await ky.get(`messages/${params.roomId}`).json()
+  const messages = await ky.get(`messages/${params.id}`).json()
 
   return {
     messages,
