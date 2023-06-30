@@ -38,7 +38,10 @@ export default function Room() {
   useEffect(() => {
     const listener = echo
       .channel('messages')
-      .listen('MessageCreated', revalidator.revalidate)
+      .listen('MessageCreated', function () {
+        console.log('MessageCreated')
+        revalidator.revalidate()
+      })
 
     formRef.current.reset()
     listRef.current.scrollTo(0, listRef.current.scrollHeight)
