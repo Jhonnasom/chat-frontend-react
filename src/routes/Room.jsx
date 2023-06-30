@@ -24,6 +24,9 @@ export async function action({params, request}) {
 
 export async function loader({params}) {
   const messages = await ky.get(`messages/${params.id}`).json()
+  const messages_read = await ky
+    .post(`messages/${params.id}/messages_read`)
+    .json()
 
   return {
     messages,

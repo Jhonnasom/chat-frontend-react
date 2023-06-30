@@ -6,6 +6,11 @@ export default function Channel({channel}) {
       <Link to={`/channels/${channel.id}/${channel.name}/channels`}>
         {channel.name}
       </Link>
+      {channel.unreadMessages > 0 && (
+        <Link to={`/channels/${channel.id}/${channel.name}/channels`}>
+          <span className="text-red">{` (${channel.unreadMessages})`}</span>
+        </Link>
+      )}
     </div>
   )
 }

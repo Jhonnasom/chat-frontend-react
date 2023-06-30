@@ -1,5 +1,6 @@
 import {forwardRef} from 'react'
 import {Form, useParams} from 'react-router-dom'
+import {Toaster} from 'react-hot-toast'
 
 const MessageForm = forwardRef(function MessageForm(props, ref) {
   const params = useParams()
