@@ -1,5 +1,6 @@
-import {useEffect, useRef} from 'react'
+import {useContext, useEffect, useRef} from 'react'
 import {useLoaderData, useRevalidator} from 'react-router-dom'
+import {AuthContext} from '../context/auth.context'
 
 import MessageForm from '../components/MessageForm'
 import MessageList from '../components/MessageList'
@@ -34,12 +35,14 @@ export default function Room() {
   const listRef = useRef(null)
   const {messages} = useLoaderData()
   const revalidator = useRevalidator()
+  const userContext = useContext(AuthContext)
 
   useEffect(() => {
     const listener = echo
-      .channel('messages')
-      .listen('MessageCreated', function () {
+      .channel(`messages.user.${userContext.id}`)
+      .listen('MessageCreated', function (data) {
         console.log('MessageCreated')
+        console.log(data)
         revalidator.revalidate()
       })
 
